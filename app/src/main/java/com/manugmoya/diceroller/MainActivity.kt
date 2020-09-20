@@ -3,8 +3,6 @@ package com.manugmoya.diceroller
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -20,29 +18,23 @@ class MainActivity : AppCompatActivity() {
             rollDice()
         }
 
-        btn_count_up.setOnClickListener {
-            countUp()
-        }
     }
 
     private fun rollDice(){
-        val randomInt = (1..6).random()
+        iv_dice.setImageResource(getRandonDiceImage())
+        iv_dice2.setImageResource(getRandonDiceImage())
 
-        Toast.makeText(this, "button clicked", Toast.LENGTH_SHORT).show()
-        result_text.text = randomInt.toString()
     }
 
-    private fun countUp(){
-
-        if(result_text.text == "Hello word"){
-            result_text.text = 1.toString()
-        }else{
-            var result = result_text.text.toString().toInt()
-            if(result < 6){
-                result++
-                result_text.text = result.toString()
-            }
+    private fun getRandonDiceImage() :Int {
+        return when((1..6).random()){
+            1 -> R.drawable.dice_1
+            2 -> R.drawable.dice_2
+            3 -> R.drawable.dice_3
+            4 -> R.drawable.dice_4
+            5 -> R.drawable.dice_5
+            else -> R.drawable.dice_6
         }
-
     }
+
 }
